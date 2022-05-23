@@ -19,3 +19,7 @@ Inicie o servidor Metro do React Native
 ~/diretorio-do-projeto$ yarn start
 ```
 
+### Rodando via APK
+
+[Baixe o APK](https://github.com/lucashec/teste-logap-react-native/blob/master/teste-logap.apk) e siga a instalação convencional em um dispositivo android.
+
