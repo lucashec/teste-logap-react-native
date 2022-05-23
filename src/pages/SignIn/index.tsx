@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Image, Text } from 'react-native';
 import Background from '../../assets/background.jpg';
-import {API_KEY} from '@env';
 
 import { 
     LogoWrapper,
@@ -14,9 +13,9 @@ import {
     FieldLabel
 } from './styles';
 import { useNavigation } from '@react-navigation/native';
-import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import env from 'react-native-dotenv';
+import api from '../../services/api';
+import { API_KEY } from '../../services/config';
 
 interface User {
   email: string;
@@ -33,19 +32,24 @@ const SignIn: React.FC = () => {
     setUser({
       email: 'teste@mail.com',
       password: 1234
-    })  
+    })
   }, [])
-  
+
   async function handleSignIn(){  
     if (email != user!.email || password != user!.password){
       return;
     } 
-    axios
-    .get(`https://api.themoviedb.org/3/authentication/guest_session/new?api_key=1e327382f1a43afde4b1f7fd987184c7`)
+    api
+    .get(`authentication/guest_session/new?api_key=${API_KEY}`)
     .then((response) => {
       AsyncStorage.setItem('token', response.data.guest_session_id);
     });
-    navigation.navigate('Home');
+  
+    navigation.reset({
+        index: 0,
+        routes: [{name: 'Home' as never}]
+    })
+
   }
 
   return (
@@ -89,9 +93,10 @@ const SignIn: React.FC = () => {
         </Button>
         </LogoWrapper>
       </Container>
-        
       </>
   );
 }
 
 export default SignIn;
+
+

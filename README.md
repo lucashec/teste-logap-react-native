@@ -23,3 +23,8 @@ Inicie o servidor Metro do React Native
 
 [Baixe o APK](https://github.com/lucashec/teste-logap-react-native/blob/master/teste-logap.apk) e siga a instalação convencional em um dispositivo android.
 
+### Usuário teste
+```
+email: teste@mail.com
+password: 1234
+```

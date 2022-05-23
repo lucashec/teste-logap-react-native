@@ -4,8 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, TouchableOpacity, View, Text } from 'react-native';
 import MovieItem from '../../components/MovieItem';
 import FeatherIcons from 'react-native-vector-icons/Feather';
-import api from '../../services/api';
 import { Container, Header, IconWrapper, Labels } from './styles';
+import { API_KEY } from '../../services/config';
 
 interface MovieProps{
     original_language: string;
@@ -40,7 +40,7 @@ const Home: React.FC = () => {
 
   async function getGenres(){
       const response = await axios.get(`
-      https://api.themoviedb.org/3/genre/movie/list?api_key=1e327382f1a43afde4b1f7fd987184c7&language=pt-BR
+      https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=pt-BR
       `);
       setGenres(response.data.genres);
   }
@@ -48,7 +48,7 @@ const Home: React.FC = () => {
       if(loading) return;
       setLoading(true);
       const response = await axios.get(`
-      https://api.themoviedb.org/3/movie/top_rated?api_key=1e327382f1a43afde4b1f7fd987184c7&language=pt-BR&page=${page}
+      https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=pt-BR&page=${page}
       `);
       setMovies(
         !movies 
